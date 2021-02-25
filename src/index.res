@@ -2,6 +2,7 @@
 
 let plusButton = document["getElementById"]("plus-one")
 let minusButton = document["getElementById"]("minus-one")
+let mainEl = document["querySelector"]("main")
 
 let count = ref(0)
 
@@ -19,8 +20,20 @@ let renderView = steps => {
   let _ = renderCountTextView(count.contents)
 }
 
+let modifyCountClass = () => {
+  let tag = document["getElementById"]("count")
+  if count.contents > 0 {
+    tag["className"] = "count count-positive"
+  } else if count.contents < 0 {
+    tag["className"] = "count count-negative"
+  } else {
+    tag["className"] = "count count-zero"
+  }
+}
+
 let plusOne = () => renderView(1)
 let minusOne = () => renderView(-1)
 
 plusButton["addEventListener"]("click", plusOne)
 minusButton["addEventListener"]("click", minusOne)
+mainEl["addEventListener"]("click", modifyCountClass)

@@ -5,6 +5,8 @@ var plusButton = document.getElementById("plus-one");
 
 var minusButton = document.getElementById("minus-one");
 
+var mainEl = document.querySelector("main");
+
 var count = {
   contents: 0
 };
@@ -26,6 +28,18 @@ function renderView(steps) {
   
 }
 
+function modifyCountClass(param) {
+  var tag = document.getElementById("count");
+  if (count.contents > 0) {
+    tag.className = "count count-positive";
+  } else if (count.contents < 0) {
+    tag.className = "count count-negative";
+  } else {
+    tag.className = "count count-zero";
+  }
+  
+}
+
 function plusOne(param) {
   return renderView(1);
 }
@@ -38,13 +52,17 @@ plusButton.addEventListener("click", plusOne);
 
 minusButton.addEventListener("click", minusOne);
 
+mainEl.addEventListener("click", modifyCountClass);
+
 export {
   plusButton ,
   minusButton ,
+  mainEl ,
   count ,
   renderCountTextView ,
   updateCount ,
   renderView ,
+  modifyCountClass ,
   plusOne ,
   minusOne ,
   
